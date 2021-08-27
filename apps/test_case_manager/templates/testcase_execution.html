@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+    <section role="main" class="content-body">
+        <header class="page-header">
+            <h2>TestSuite Manager </h2>
+
+            <div class="right-wrapper pull-right">
+                <ol class="breadcrumbs">
+                    <li>
+                        <a href="">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li><span>TestSuite manager</span></li>
+
+                </ol>
+
+                <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+            </div>
+        </header>
+
+        <!-- start: page -->
+        <section class="panel">
+            <div class="panel-body">
+
+                <div class="col-md-12">
+
+                    {#                <form action="/test/" method="post">#}
+                    {#                {% csrf_token %}#}
+                    {#                {{ form.as_p }}#}
+                    {#                <input type="submit" class="mb-xs mt-xs mr-xs  btn btn-primary">#}
+                    {#                </form>#}
+                    <form id="form1" class="form-horizontal" action="/sanity/" method="post">
+                        {% csrf_token %}
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <button class="btn btn-primary" style="float: right">Submit</button>
+
+                                <h2 class="panel-title">Test Generator</h2>
+                                <p class="panel-subtitle">
+                                    Initiate A New Test
+                                </p>
+                            </header>
+                            <div class="panel-body">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }} alert-dismissible " role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+
+                                            <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                                Error{% else %}
+                                                {{ message.tags|title }}{% endif %}</strong> {{ message }} <a target="_blank" href="{% url 'log'  test_id %}">Log</a>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+
+
+                                {% endif %}
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Test Name</label>
+                                    <div class="col-sm-8">
+                                        {{ form.name.errors }}
+                                        {{ form.name }}
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Target VM </label>
+                                    <div class="col-sm-8">
+                                        {{ form.vms.errors }}
+                                        {{ form.vms }}
+                                    </div>
+                                </div>
+                             <div class="form-group">
+                                    <label class="col-sm-4 control-label">DEC-W Build </label>
+                                    <div class="col-sm-8">
+                                        {{ form.builds.errors }}
+                                        {{ form.builds }}
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </section>
+        </div>
+        </div>
+        <br>
+
+
+        </div>
+    </section>
+
+
+{% endblock %}
+
+
+
+

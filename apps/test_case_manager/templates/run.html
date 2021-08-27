@@ -1,0 +1,487 @@
+{% extends "base.html" %}
+{% load static %}
+{% block pageheader %}
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/select2/select2.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css' %}" />
+    <script src="{% static 'ui/assets/vendor/select2/select2.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js' %}"></script>
+    		<script src="{% static 'ui/assets/javascripts/tables/examples.datatables.default.js' %}"></script>
+		<script src="{% static 'ui/assets/javascripts/tables/examples.datatables.row.with.details.js' %}"></script>
+		<script src="{% static 'ui/assets/javascripts/tables/examples.datatables.tabletools.js' %}"></script>
+    <script src="{% static 'ui/assets/javascripts/forms/examples.advanced.form.js' %}" ></script>
+
+    	<link rel="stylesheet" href="{% static 'ui/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/select2/select2.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/dropzone/css/basic.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/dropzone/css/dropzone.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/summernote/summernote.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/summernote/summernote-bs3.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/codemirror/lib/codemirror.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/codemirror/theme/monokai.css' %}" />
+
+
+	<script src="{% static 'ui/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/select2/select2.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-maskedinput/jquery.maskedinput.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/fuelux/js/spinner.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/dropzone/dropzone.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-markdown/js/markdown.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-markdown/js/to-markdown.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-markdown/js/bootstrap-markdown.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/lib/codemirror.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/addon/selection/active-line.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/addon/edit/matchbrackets.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/mode/javascript/javascript.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/mode/xml/xml.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/mode/htmlmixed/htmlmixed.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/mode/css/css.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/summernote/summernote.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-maxlength/bootstrap-maxlength.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/ios7-switch/ios7-switch.js' %}"></script>
+
+<style>
+
+</style>
+<script>
+
+
+{#$(document).ready(function() {#}
+{#  var $table = $("table.tables.list");#}
+{##}
+{#  var qc_rows = $($table).find('tr');#}
+{##}
+{#    $(qc_rows).each(function() {#}
+{#      $(this).find('td').html();#}
+{#    });#}
+{##}
+{##}
+
+</script>
+
+{% endblock %}
+
+
+                    {% block content %}
+                        {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }} alert-dismissible " role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+
+                                            <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                                Error{% else %}
+                                                {{ message.tags|title }}{% endif %}</strong> {{ message }} <a target="_blank" href="{% url 'log'  test_id %}">Log</a>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+
+
+                                {% endif %}
+       <section class="col-md-12 panel">
+            <div class="panel-body">
+
+
+
+                    <form id="form1" class="form-horizontal" action="/run/" method="post">
+                        {% csrf_token %}
+                        <section class="panel">
+                            <header class="panel-heading">
+                                 <button class="btn btn-primary" style="float: right">Submit</button>
+
+                                <h2 class="panel-title">Run Test</h2>
+                                <p class="panel-subtitle">
+                                    Initiate A New Test
+                                </p>
+                            </header>
+                  <div class="panel-body">
+
+														<div class="form-group">
+												<label class="col-md-3 control-label">Test Name</label>
+												<div class="col-md-3">
+
+
+                                         {{ form.name.errors }}
+                                        {{ form.name }}
+                                    </div>
+{#                                                        </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#                                    <div class="form-group">#}
+												<label class="col-md-3 control-label">Agent Version</label>
+												<div class="col-md-3">
+
+                                        {{ form.builds.errors }}
+                                        {{ form.builds }}
+{#                                    </div>#}
+                                    </div>
+
+
+{#                                                        <div class="form-group">#}
+												<label class="col-md-3 control-label">VM Name</label>
+												<div class="col-md-3">
+
+                                        {{ form.vms.errors }}
+                                        {{ form.vms }}
+{#                                    </div>#}
+                                                        </div>
+
+                                                         <div class="form-group">
+												<label class="col-md-3 control-label">Select Tests</label>
+												<div class="col-md-3 ">
+
+                                                             <select  class="form-control "  multiple="multiple" data-plugin-multiselect data-plugin-options='{ "enableCaseInsensitiveFiltering": true }' id="ms_example6">
+{#														<select multiple="multiple" data-plugin-selectTwo class="form-control populate"  id="ms_example6">#}
+                                                                 <optgroup label="Sanity">
+                                                            <option value="All-Sanity">Sanity (All)</option>
+															<option value="FileActivity">File Activity</option>
+															<option value="DirActivity">Dir Activity</option>
+															<option value="ProcessActivity">Process Activity</option>
+															<option value="NetworkActivity">Network Activity</option>
+															<option value="RegistryActivity">Registry Activity</option>
+
+														</optgroup>
+                                                                   <optgroup label="Dtex Activity">
+
+															<option value="ClientStartAgent">Start Agent</option>
+															<option value="ClientStopAgent">Stop Agent</option>
+															<option value="ClientFetchDB">Fetch Agent DB</option>
+{#															<option value="ClientFileActivity">File Activity</option>#}
+
+														</optgroup>
+                                                        <optgroup label="User Activity">
+                                                            <option value="All-User">User Activity (All)</option>
+															<option value="enableUserActivity">Enable UserActivity</option>
+															<option value="disableUserActivity">Disable UserActivity</option>
+															<option value="officeUserActivity">Office UserActivity</option>
+															<option value="browserUserActivity">Browser UserActivity</option>
+															<option value="appsUserActivity">Win10 App UserActivity</option>
+
+														</optgroup>
+                                                       <optgroup label="KeyLogger Activity">
+                                                           <option value="All-KeyLoggerActivity">KeyLogger Activity (All)</option>
+                                                           <option value="enableKeyLoggerActivity">Enable KeyLoggerActivity</option>
+															<option value="disableKeyLoggerActivity">Disable KeyLoggerActivity</option>
+															<option value="randomKeyLoggerActivity">Random KeyStrokes</option>
+															<option value="longKeyLoggerActivity">LongString Keystrokes</option>
+{#															<option value="notepadKeyLoggerActivity">Notepad Keystrokes</option>#}
+{#															<option value="cmdKeyLoggerActivity">CMD Keystrokes</option>#}
+
+
+														</optgroup>
+                                                                 <optgroup label="FileClassification Activity">
+															<option value="All-FileContentActivity">FileClassification (All)</option>
+															<option value="enable-type2FileContentActivity">Enable FileClassification (Type2)</option>
+															<option value="enable-type3FileContentActivity">Enable FileClassification (Type3)</option>
+															<option value="xlsxFileContentActivity">FileContent (xlsx/xlsm)</option>
+															<option value="pptFileContentActivity">FileContent (pptx/pptm)</option>
+															<option value="pdfFileContentActivity">FileContent (PDF)</option>
+															<option value="docxFileContentActivity">FileContent (docx/docm)</option>
+															<option value="ooxmlFileContentActivity">FileContent (OOXML)</option>
+															<option value="sizeFileContentActivity">FileContent MaxFileSize</option>
+															<option value="disableFileContentActivity">No FileContent</option>
+
+														</optgroup>
+                                                                   <optgroup label="Quarantine Activity">
+															<option value="All-Quarantine">Quarantine (All)</option>
+															<option value="enableQuarantine">Enable </option>
+															<option value="disableQuarantine">Disable </option>
+															<option value="ChromeQuarantine">Chrome</option>
+															<option value="EdgeQuarantine">Edge/IE</option>
+															<option value="FirefoxQuarantine">Firefox</option>
+															<option value="OperaQuarantine">Opera</option>
+															<option value="GoogleDriveQuarantine">GoogleDrive</option>
+															<option value="OneDriveQuarantine">OneDrive</option>
+															<option value="WinSCPQuarantine">WinSCP</option>
+															<option value="CMDQuarantine">CMD</option>
+
+														</optgroup>
+
+
+
+                                                                  <optgroup label="EventLogger Activity">
+															<option value="eventid1102">EventID 1102</option>
+
+														</optgroup>
+
+													</select>
+                                    </div>
+                                                         </div>
+
+                                                        </div>
+                            </div>
+
+                        </section>
+                    </form>
+                </div>
+
+        </section>
+
+                        <section class="col-md-12 panel">
+            <div class="panel-body">
+   <form id="form1" class="form-horizontal" action="" method="post">
+                        {% csrf_token %}
+                        <section class="panel">
+{#                            <header class="panel-heading">#}
+{#                                 <button class="btn btn-primary" style="float: right">Submit</button>#}
+{##}
+{#                                <h2 class="panel-title">Test Status</h2>#}
+{#                                <p class="panel-subtitle">#}
+{#                                    Test details#}
+{#                                </p>#}
+{#                            </header>#}
+                  <div class="panel-body">
+
+ {% load parse_vm_tag %}
+                    <table class="table table-bordered table-striped mb-none" id="datatable-details">
+                        <thead>
+                        <tr class="center">
+                            <th>ID</th>
+                            <th>Test Suite Name</th>
+                            <th class="center">Status</th>
+                            <th>Virtual Machine</th>
+                            <th>Report</th>
+                            <th class="center">Log</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for s in test_details %}
+                            <tr >
+                                <td>{{ s.id }}</td>
+                                <td>{{ s.name }}</td>
+
+                                {% if s.status == "0" %}
+                                    <td class="center"><span class="label label-success">Complete </span></td>
+                                {% elif s.status == "2" %}
+                                    <td class="center"><span class="label label-info">Running</span></td>
+                                {% else %}
+                                    <td class="center"><span class="label label-default">Error</span></td>
+
+                                {% endif %}
+                                <td>{{ s.vms | parse_vm_tag }}</td>
+                                <td><a target="_blank" href="{% url 'runreport'  c=s.id %}">Report {{ s.id }} </a></td>
+{#                                <td><a target="_blank" href="{% url 'runreport'  c=s.id b=s.id %}">Report {{ s.id }} </a></td>#}
+                                <td><a target="_blank" href="{% url 'log'  s.id %}">Log</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                        <br>
+                        <br>
+                        <br>
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        </section>
+                    </form>
+                </div>
+
+
+
+
+
+</div>
+
+
+
+        </section>
+
+
+                    {% endblock %}
+
+
+{% block pagefooter %}
+    				<!-- Theme Initialization Files -->
+		<script src="{% static 'ui/assets/javascripts/theme.init.js'  %}"></script>		<!-- Specific Page Vendor -->
+		<script src="{% static 'ui/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-appear/jquery.appear.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-easypiechart/jquery.easypiechart.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot/jquery.flot.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot-tooltip/jquery.flot.tooltip.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot/jquery.flot.pie.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot/jquery.flot.categories.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot/jquery.flot.resize.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-sparkline/jquery.sparkline.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/raphael/raphael.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/morris/morris.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/gauge/gauge.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/snap-svg/snap.svg.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/liquid-meter/liquid.meter.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/jquery.vmap.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/data/jquery.vmap.sampledata.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/jquery.vmap.world.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js'  %}"></script>
+     <script>
+$(document).ready(function() {
+{#(function update() {#}
+{#    $.ajax({#}
+{##}
+{#        type : 'GET',#}
+{#        url : '{% url 'testresult' %}',#}
+{#        success : function(data){#}
+{##}
+{#        $("#datatable-details").dataTable().fnDestroy();#}
+{#        alert(data);#}
+{#         var dt_table = $('#datatable-details').dataTable({#}
+{#        order: [[ 0, "desc" ]],#}
+{#        columnDefs: [#}
+{#            {#}
+{#                name: 'name',#}
+{#                orderable: true,#}
+{#                searchable: true,#}
+{#                targets: [0],#}
+{#            },#}
+{#            {#}
+{#                name: 'description',#}
+{#                orderable: true,#}
+{#                searchable: true,#}
+{#                targets: [1],#}
+{#                defaultContent: "-",#}
+{#            },#}
+{##}
+            {#{#}
+            {#    // The `data` parameter refers to the data for the cell (defined by the#}
+            {#    // `data` option, which defaults to the column being worked with, in#}
+            {#    // this case `data: 0`.#}
+            {#    "render": function ( data, type, row ) {#}
+            {#        return '<a target="_blank" href="' + data + '">Link';#}
+            {#    },#}
+            {#    "targets": [15, 16]#}
+{#            //},#}
+            {#{#}
+            {#    // The `data` parameter refers to the data for the cell (defined by the#}
+            {#    // `data` option, which defaults to the column being worked with, in#}
+            {#    // this case `data: 0`.#}
+            {#    "render": function ( data, type, row ) {#}
+            {#        if (data == 'True'){ return '<span class="label label-success">Pass</span>';}#}
+            {#        if (data == 'Running'){ return '<span class="label label-info">Running</span>';}#}
+            {#        if (data == 'False'){ return '<span class="label label-danger">Fail</span>';}#}
+            {#        else {return '<span class="label label-default">' + data + '</span>';}#}
+            {##}
+            {#    },#}
+            {#    "targets": 5#}
+{#            //},#}
+            {#{#}
+            {#    // The `data` parameter refers to the data for the cell (defined by the#}
+            {#    // `data` option, which defaults to the column being worked with, in#}
+            {#    // this case `data: 0`.#}
+            {#    "render": function ( data, type, row ) {#}
+            {##}
+            {#        if (data[0] == "True"){ return '<a target="_blank" href="' + data[1] + '"><span class="label label-success">Pass</span>';}#}
+            {#        if (data[0] == "False") {return '<a target="_blank"  href="' + data[1] + '"><span class="label label-danger">Fail</span>';}#}
+            {#        if (data[0] == "Running") {return '<a target="_blank"  href="' + data[1] + '"><span class="label label-info">Running</span>';}#}
+            {#          {return '<a target="_blank"  href="' + data[1] + '"><span class="label label-default" >'+data[0]+'</span>';}#}
+            {#    },#}
+            {#    "targets": [ 6 , 7, 8, 9, 10, 11, 12, 13, 14]#}
+{#            //},#}
+            {#{#}
+            {#    // The `data` parameter refers to the data for the cell (defined by the#}
+            {#    // `data` option, which defaults to the column being worked with, in#}
+            {#    // this case `data: 0`.#}
+            {#    "render": function ( data, type, row ) {#}
+            {#        if (data == 'Complete'){ return '<span class="label label-primary">Complete</span>';}#}
+            {#        else {return '<span class="label label-info">' + data + '</span>';}#}
+            {#    },#}
+            {#    "targets": 1#}
+{#            //},#}
+{##}
+{#            {#}
+{#    "defaultContent": "-",#}
+{#    "targets": "_all",#}
+{##}
+{#  },#}
+{##}
+{##}
+{#        ],#}
+{#        searching: false,#}
+{#        processing: true,#}
+{#        serverSide: true,#}
+{#        stateSave: true,#}
+{#        ajax: "{% url 'testresult' %}"#}
+{#    });#}
+{#         },#}
+{#        // pass existing options#}
+{#    }).then(function() {           // on completion, restart#}
+{#       setTimeout(update, 3000);  // function refers to itself#}
+{#    });#}
+//})();
+});
+        </script>
+{% endblock %}
+
+

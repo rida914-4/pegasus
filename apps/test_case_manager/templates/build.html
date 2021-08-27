@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+{% load static %}
+{% block pageheader %}
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/select2/select2.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css' %}" />
+    <script src="{% static 'ui/assets/vendor/select2/select2.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js' %}"></script>
+    		<script src="{% static 'ui/assets/javascripts/tables/examples.datatables.default.js' %}"></script>
+		<script src="{% static 'ui/assets/javascripts/tables/examples.datatables.row.with.details.js' %}"></script>
+		<script src="{% static 'ui/assets/javascripts/tables/examples.datatables.tabletools.js' %}"></script>
+    <script src="{% static 'ui/assets/javascripts/forms/examples.advanced.form.js' %}" ></script>
+
+    	<link rel="stylesheet" href="{% static 'ui/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/select2/select2.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/dropzone/css/basic.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/dropzone/css/dropzone.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/summernote/summernote.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/summernote/summernote-bs3.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/codemirror/lib/codemirror.css' %}" />
+		<link rel="stylesheet" href="{% static 'ui/assets/vendor/codemirror/theme/monokai.css' %}" />
+
+
+	<script src="{% static 'ui/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/select2/select2.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-maskedinput/jquery.maskedinput.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/fuelux/js/spinner.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/dropzone/dropzone.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-markdown/js/markdown.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-markdown/js/to-markdown.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-markdown/js/bootstrap-markdown.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/lib/codemirror.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/addon/selection/active-line.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/addon/edit/matchbrackets.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/mode/javascript/javascript.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/mode/xml/xml.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/mode/htmlmixed/htmlmixed.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/codemirror/mode/css/css.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/summernote/summernote.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-maxlength/bootstrap-maxlength.js' %}"></script>
+		<script src="{% static 'ui/assets/vendor/ios7-switch/ios7-switch.js' %}"></script>
+
+<style>
+.td {
+    padding: 3px;
+}
+</style>
+<script>
+$(document).ready(function() {
+  var $table = $("table.tables.list");
+
+  var qc_rows = $($table).find('tr');
+
+    $(qc_rows).each(function() {
+      $(this).find('td').html();
+    });
+
+
+});
+</script>
+
+{% endblock %}
+
+
+                    {% block content %}
+       <section class="panel">
+            <div class="panel-body">
+
+                <div class="col-md-15">
+
+                    {#                <form action="/test/" method="post">#}
+                    {#                {% csrf_token %}#}
+                    {#                {{ form.as_p }}#}
+                    {#                <input type="submit" class="mb-xs mt-xs mr-xs  btn btn-primary">#}
+                    {#                </form>#}
+                    <form id="form1" class="form-horizontal" action="/build/" method="post">
+                        {% csrf_token %}
+                        <section class="panel">
+                            <header class="panel-heading">
+                                 <button class="btn btn-primary" style="float: right">Submit</button>
+
+                                <h2 class="panel-title">Test Generator</h2>
+                                <p class="panel-subtitle">
+                                    Initiate A New Build Test
+                                </p>
+                            </header>
+                  <div class="panel-body">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }} alert-dismissible " role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+
+                                            <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                                Error{% else %}
+                                                {{ message.tags|title }}{% endif %}</strong> {{ message }} <a target="_blank" href="{% url 'log'  test_id %}">Log</a>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+
+
+                                {% endif %}
+                  <div class="col-sm-15">
+													<div class="row">
+														<div class="col-sm-3">
+
+                                    {{ form.non_field_errors }}
+                                         {{ form.name.errors }}
+                                        {{ form.name }}
+                                    </div>
+
+
+
+
+
+                                    <div class="col-sm-2">
+                                        {{ form.builds.errors }}
+                                        {{ form.builds }}
+                                    </div>
+                                                        <div class="col-sm-2">
+                                        {{ baseline_form.bbbuilds.errors }}
+                                        {{ baseline_form.bbbuilds }}
+                                    </div>
+                                                          <div class="col-sm-5">
+                                        {{ form.vms.errors }}
+                                        {{ form.vms }}
+                                    </div>
+
+                                </div>
+                <br>
+
+                          <table ><tr>
+                              <td >Alive </td><td >
+                                                <div class="switch switch-sm switch-primary">
+														<input type="checkbox" name="alive" data-plugin-ios-switch  />
+													</div>
+                                  </td>
+                              <td>Install </td><td>
+													<div class="switch switch-sm switch-success">
+														 <input type="checkbox" name="install" data-plugin-ios-switch />
+													</div></td>
+                              <td>Sanity </td><td>
+													<div class="switch switch-sm switch-warning">
+														 <input type="checkbox" name="sanity" data-plugin-ios-switch />
+													</div>
+                                  </td>
+                              <td>Disk Perf</td><td>
+													<div class="switch switch-sm switch-danger">
+														<input type="checkbox" name="winsat" data-plugin-ios-switch />
+													</div></td>
+                              <td>Network</td><td>
+													<div class="switch switch-sm switch-success">
+														 <input type="checkbox" name="network" data-plugin-ios-switch />
+													</div></td>
+                              <td>Registry</td><td>
+													<div class="switch switch-sm switch-dark">
+														 <input type="checkbox" name="registry" data-plugin-ios-switch />
+													</div></td>
+                              <td>File Hash</td><td>
+													<div class="switch switch-sm switch-info">
+														 <input type="checkbox" name="filehash" data-plugin-ios-switch />
+													</div></td>
+                              <td>Event Logger </td><td>
+													<div class="switch switch-sm switch-success">
+														<input type="checkbox" name="event" data-plugin-ios-switch />
+													</div></td>
+                              <td>UnInstall</td><td>
+													<div class="switch switch-sm switch-info">
+														<input type="checkbox" name="uninstall" data-plugin-ios-switch />
+													</div></td>
+                              <td>Update</td><td>
+
+                              {{ form.update }}
+                              </tr>
+                              </table>
+
+                  </div>
+                            </div>
+
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+
+
+					<!-- start: page -->
+                             <section class="panel">
+            <div class="panel-body">
+
+
+							<section class="panel">
+
+
+                        <div class="col-lg-12 col-md-12">
+							<section class="panel">
+								<header class="panel-heading panel-heading-transparent">
+									<div class="panel-actions">
+										<a href="#" class="fa fa-caret-down"></a>
+										<a href="#" class="fa fa-times"></a>
+									</div>
+
+									<h2 class="panel-title">Test Suite Details</h2>
+								</header>
+								<div class="panel-body">
+									<div class="table-responsive">
+
+
+                                        <table class="table table-bordered table-striped mb-none" id="datatable-details">
+									<thead>
+										<tr>
+
+											<th>Status</th>
+                                            <th>Current Build</th>
+                                            <th>Baseline Build</th>
+											<th>Virtual Machine</th>
+                                            <th>Alive</th>
+											<th>Install</th>
+											<th>Uninstall</th>
+											<th>Update</th>
+											<th>Sanity</th>
+                                            <th>Disk Perf</th>
+                                            <th>Network</th>
+											<th>File Hash</th>
+											<th>Registry</th>
+											<th>Event Logger</th>
+											<th>Result</th>
+											<th>Log</th>
+
+										</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+								</table>
+									</div>
+								</div>
+							</section>
+						</div>
+
+
+        </section>
+                                                </div>
+
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+                    {% endblock %}
+
+
+{% block pagefooter %}
+    				<!-- Theme Initialization Files -->
+		<script src="{% static 'ui/assets/javascripts/theme.init.js'  %}"></script>		<!-- Specific Page Vendor -->
+		<script src="{% static 'ui/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-appear/jquery.appear.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-easypiechart/jquery.easypiechart.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot/jquery.flot.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot-tooltip/jquery.flot.tooltip.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot/jquery.flot.pie.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot/jquery.flot.categories.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/flot/jquery.flot.resize.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jquery-sparkline/jquery.sparkline.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/raphael/raphael.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/morris/morris.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/gauge/gauge.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/snap-svg/snap.svg.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/liquid-meter/liquid.meter.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/jquery.vmap.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/data/jquery.vmap.sampledata.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/jquery.vmap.world.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js'  %}"></script>
+		<script src="{% static 'ui/assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js'  %}"></script>
+     <script>
+
+        $(document).ready(function() {
+
+
+
+(function update() {
+    $.ajax({
+
+        type : 'GET',
+        url : '{% url 'result' %}',
+        success : function(data){
+
+        $("#datatable-details").dataTable().fnDestroy();
+         var dt_table = $('#datatable-details').dataTable({
+        order: [[ 0, "desc" ]],
+        columnDefs: [
+            {
+                name: 'name',
+                orderable: true,
+                searchable: true,
+                targets: [0],
+            },
+            {
+                name: 'description',
+                orderable: true,
+                searchable: true,
+                targets: [1],
+                defaultContent: "-",
+            },
+            {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+                    return '<a target="_blank" href="' + data + '">Link';
+                },
+                "targets": [15, 16]
+            },
+            {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+                    if (data == 'True'){ return '<span class="label label-success">Pass</span>';}
+                    if (data == 'Running'){ return '<span class="label label-info">Running</span>';}
+                    if (data == 'False'){ return '<span class="label label-danger">Fail</span>';}
+                    else {return '<span class="label label-default">' + data + '</span>';}
+
+                },
+                "targets": 5
+            },
+            {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+
+                    if (data[0] == "True"){ return '<a target="_blank" href="' + data[1] + '"><span class="label label-success">Pass</span>';}
+                    if (data[0] == "False") {return '<a target="_blank"  href="' + data[1] + '"><span class="label label-danger">Fail</span>';}
+                    if (data[0] == "Running") {return '<a target="_blank"  href="' + data[1] + '"><span class="label label-info">Running</span>';}
+                      {return '<a target="_blank"  href="' + data[1] + '"><span class="label label-default" >'+data[0]+'</span>';}
+                },
+                "targets": [ 6 , 7, 8, 9, 10, 11, 12, 13, 14]
+            },
+            {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+                    if (data == 'Complete'){ return '<span class="label label-primary">Complete</span>';}
+                    if (data == 'Aborted'){ return '<span class="label label-warning">Aborted</span>';}
+                    if (data == 'Error'){ return '<span class="label label-danger">Error</span>';}
+                    else {return '<span class="label label-info">' + data + '</span>';}
+                },
+                "targets": 1
+            },
+
+            {
+    "defaultContent": "-",
+    "targets": "_all",
+
+  },
+
+
+        ],
+        searching: false,
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        ajax: "{% url 'result' %}"
+    });
+         },
+        // pass existing options
+    }).then(function() {           // on completion, restart
+       setTimeout(update, 3000);  // function refers to itself
+    });
+})();
+});
+        </script>
+{% endblock %}

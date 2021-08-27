@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+    <section role="main" class="content-body">
+    <header class="page-header">
+        <h2>VM Manager </h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Dtex User</span></li>
+
+            </ol>
+
+            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <section class="panel">
+   <div class="panel-body">
+
+                            <div class="col-md-12">
+                                <section class="panel panel-featured panel-featured-info">
+                                    <header class="panel-heading">
+                                        <div class="panel-actions">
+                                            <a href="#" class="fa fa-caret-down"></a>
+                                            <a href="#" class="fa fa-times"></a>
+                                        </div>
+
+                                        <h2 class="panel-title">Add a Dtex User</h2>
+                                    </header>
+                                    <div class="panel-body">
+
+            <div class="col-md-15">
+                <form action="/adduser/" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type="submit" class="mb-xs mt-xs mr-xs  btn btn-primary">
+                </form>
+            </div>
+        </div>
+                                </section>
+                            </div>
+   </div>
+    <br>
+            <div class="panel-body">
+                            <div class="col-md-12">
+                                <section class="panel panel-featured panel-featured-info">
+                                    <header class="panel-heading">
+                                        <div class="panel-actions">
+                                            <a href="#" class="fa fa-caret-down"></a>
+                                            <a href="#" class="fa fa-times"></a>
+                                        </div>
+
+                                        <h2 class="panel-title">Registered Dtex User</h2>
+
+
+                                    </header>
+                                    <div class="panel-body">
+
+                                            <table class="table table-bordered table-striped" id="datatable-ajax"
+                                                   data-url="assets/ajax/ajax-datatables-sample.json">
+                                                <thead>
+                                                <tr>
+                                                    <th width="20%">User</th>
+                                                    <th width="25%">Password</th>
+
+
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+
+                                                                <td>{{ user }}</td>
+                                                                    <td>{{ password }}</td>
+                                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                    </div>
+                                </section>
+                            </div>
+
+
+
+                        </div>
+
+
+        </div>
+
+    </section>
+
+
+{% endblock %}
