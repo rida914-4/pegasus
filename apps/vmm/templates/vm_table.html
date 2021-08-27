@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'ui/assets/vendor/pnotify/pnotify.custom.css' %}" />
+    <script src="{% static 'ui/assets/vendor/pnotify/pnotify.custom.js' %}"></script>
+    <script>
+jQuery(function(){
+   jQuery('#click-to-close-primary').click()});
+
+</script>
+
+    <section role="main" class="content-body">
+    <header class="page-header">
+        <h2>VM Manager </h2>
+
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>VM manager</span></li>
+                <li><span>VM Manager</span></li>
+            </ol>
+
+            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+        </div>
+    </header>
+
+    <!-- start: page -->
+    <section class="panel">
+   <div class="panel-body">
+
+                            <div class="col-md-12">
+                                <section class="panel panel-featured panel-featured-info">
+                                    <header class="panel-heading">
+                                        <div class="panel-actions">
+                                            <a href="#" class="fa fa-caret-down"></a>
+                                            <a href="#" class="fa fa-times"></a>
+                                        </div>
+
+                                        <h2 class="panel-title">Add a New Virtual Machine</h2>
+                                    </header>
+                                    <div class="panel-body">
+
+            <div class="col-md-15">
+                <form action="/vms/" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type="submit" class="mb-xs mt-xs mr-xs  btn btn-primary">
+                </form>
+            </div>
+        </div>
+                                </section>
+                            </div>
+   </div>
+    <br>
+            <div class="panel-body">
+                            <div class="col-md-12">
+                                <section class="panel panel-featured panel-featured-info">
+                                    <header class="panel-heading">
+                                        <div class="panel-actions">
+                                            <a href="#" class="fa fa-caret-down"></a>
+                                            <a href="#" class="fa fa-times"></a>
+                                        </div>
+
+                                        <h2 class="panel-title">Registered Virtual Machines</h2>
+
+
+                                    </header>
+                                    <div class="panel-body">
+
+                                            <table class="table table-bordered table-striped" id="datatable-ajax"
+                                                   data-url="assets/ajax/ajax-datatables-sample.json">
+                                                <thead>
+                                                <tr>
+                                                    <th width="20%">Virtual Machines</th>
+                                                    <th width="25%">IP</th>
+                                                    <th width="25%">User</th>
+
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for vm in vms %}
+
+                                                                <tr>
+                                                                <td href=""><strong>{{ vm.vm_name }}</strong></td>
+                                                                <td>{{ vm.ip }}</td>
+                                                                    <td>{{ vm.user }}</td>
+                                                                </tr>
+
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                    </div>
+                                </section>
+                            </div>
+
+
+
+                        </div>
+
+
+        </div>
+    <button id="click-to-close-primary" class="mt-sm mb-sm btn btn-primary" hidden></button>
+    </section>
+
+
+{% endblock %}
